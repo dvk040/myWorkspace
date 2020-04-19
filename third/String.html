@@ -1,0 +1,61 @@
+ // iam in oneBranch now // iam in oneBranch now // iam in oneBranch now
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <span>Enter Name</span> <input type="text" id="input">
+    <input type="button" value="submit" onclick="getData()">
+</head>
+
+
+<body>
+    <script>
+        function getData() {
+            var players = ['sachin', 'dhoni', 'kohli'];
+            var myply = document.getElementById("input").value;
+            if (players.indexOf(myply) == -1) {
+                players.push(myply)
+            } else {
+                alert("name exist")
+            }
+            console.log(players);
+            //return players;             
+        }
+
+
+
+        var students = [{
+            name: "sachin",
+            age: 16
+        }, {
+            name: "kohli",
+            age: 21
+        }, {
+            name: "kife",
+            age: 25
+        }]
+        var filterResult = students.filter(function(o, i) {
+            // debugger
+
+            return o.name.startsWith("k")
+        })
+        console.log(filterResult);
+
+        var pushresult = students.push({
+            name: "jafar",
+            age: 30,
+            "cars": {
+                "car1": "Ford",
+                "car2": "BMW",
+                "car3": "Fiat"
+            }
+        })
+        console.log(pushresult);
+        console.log(students);
+    </script>
+</body>
+
+</html>
