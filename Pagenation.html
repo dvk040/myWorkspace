@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="">
+<script type="text/javascript" src=""></script>
+
+<input type="button" value="next" onclick="next(cpage)" >
+<br>
+<input type="button" value="previce" onclick="previce(cpage)" >
+<br>
+<span>Enter vales b/w 1 to 12</span> <input type="text" id="text">
+<input type="submit" value="submit" onclick="text()" >
+
+</head>
+
+
+<body>
+    <script>
+    var tdata=["id=1","id=2","id=3","id=4",
+    "id=5","id=6","id=7","id=8",
+    "id=9","id=10","id=11","id=12"];
+    //console.log(tdata);
+    var cpage=1;
+    var perPage=4;
+    var result=[];
+
+    function nperpage(cpage){
+        var end=(cpage)*perPage;
+        var start=end-perPage;
+       result= tdata.slice(start,end)
+       return result;
+    }
+    
+    function next(cpage){
+        var cpage=cpage+1;
+        nperpage(cpage);
+        console.log(result);
+    }
+    function previce(cpage){
+        var cpage=cpage+0;
+        nperpage(cpage);
+        console.log(result);
+    }
+    function text(){   
+        var number=document.getElementById("text").value;
+        number=parseInt(number);
+        var start=number;
+        var end=start+perPage;
+       result= tdata.slice(start,end)
+        console.log(result);
+    }
+
+</script>
+
+</body>
+</html>
