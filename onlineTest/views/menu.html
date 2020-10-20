@@ -1,0 +1,27 @@
+<div ng-if="isLoggedIn">
+    <div class="menu text-right" ng-if="role=='admin'">
+        <a href="#!/home">Home</a>
+        <a href="#!/users-reg">School Reg</a>
+        <a href="#!/users-list">School List</a>
+        <a href="#!/login" ng-click=fnLogout()>Logout</a> 
+    </div>
+
+    <div  class="menu text-right" ng-if="role=='student'">
+        <a href="#!/home">Home</a>
+        <a href="#!/write-test">Write Test</a>
+        <a href="#!/Results">Results</a>
+        <a href="#!/login" ng-click=fnLogout()>Logout</a>
+    </div>
+
+    <div  class="menu text-right" ng-if="role=='school'">
+        <a href="#!/home">Home</a>
+        <a href="#!/std-reg">Std Reg</a>
+        <a href="#!/std-list>Std List"</a>
+        <a href="#!/sub-reg">Subject</a>
+        <a href="#!/sub-list">Sub List</a>
+        <a href="#!/pre-que">Pre Que</a>
+        <a href="#!/que-list">Que List</a>
+        <a href="#!/login" ng-click=fnLogout()>Logout</a>
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<h1 class="text-center">Prepare Questions </h1>
+<div class="container-fluid">
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>Subject:</label>
+        </div>
+        <div class="col-sm-5">
+            <input class="form-control" ng-model="data.sub"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>Question:</label>
+        </div>
+        <div class="col-sm-5">
+            <textarea class="form-control" rows="5" ng-model="data.que"/></textarea>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>A:</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="data.opt1"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>B:</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="data.opt2"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>C:</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="data.opt3"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>D:</label>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" ng-model="data.opt4"/>
+        </div>
+    </div>
+    <div class="row form-group">
+            <div class="col-sm-5 text-right">
+                <label>Ans:</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="data.ans"/>
+            </div>
+        </div>
+    <div class="row form-group">
+        <div class="col-sm-5 text-right">
+            <label>School:</label>
+        </div>
+        <div class="col-sm-5">
+            <input class="form-control" ng-model="data.school"/>
+        </div>
+    </div>
+    <div class="row form-group">
+            <div class="col-sm-offset-5 col-sm-7">
+                <input type="button" value="QueSubmit" class="btn btn-primary" ng-click="fnQuePre()"/>
+            </div>  
+    </div>
+    <span class="row form-group">
+            <span class="col-sm-12 text-center">
+                  <b class="text-danger">{{msg}}</b>
+            </span>  
+        </span>
+</div>

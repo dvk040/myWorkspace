@@ -1,0 +1,55 @@
+<h1 class="text-center">Online Exam </h1>
+<div class="container-fluid" >
+    <div class="row form-group">
+                    <div class="col-sm-5 text-right">
+                       <label>Subject:</label> 
+                    </div>
+                    <div class="col-sm-3">
+                        <select ng-model="sub" class="form-control">
+                            <option>Select Subject</option>
+                            <option>english</option>
+                            <option>java</option>
+                            <option>angular</option>
+                        </select>
+                    </div> 
+    </div> 
+    <div class="row form-group">
+                <div class="col-sm-5 text-right">
+                   <label>School:</label> 
+                </div>
+                <div class="col-sm-3">
+                    <input  class="form-control" ng-model="school" />
+                </div>
+            </div>
+
+    <div class="row form-group">
+        <div class="col-sm-offset-5 col-sm-7">
+            <input type="button" value="TakeTest" class="btn btn-primary" ng-click="examQue()" />
+        </div>  
+    </div>
+
+ </div>
+
+ <div>{{msg}}</div>
+
+<div ng-if='isabouttoTakeTest'>
+<div class="font-weight-bold" text-right>{{timeLeft}}</div>
+    <div ng-repeat='q in queList' class="font-weight-bold" >{{$index+1}}{{q.que}}
+        <div>A:<input type='radio' value='A' name={{q.id}} ng-model='ans[q.id]'>{{q.opt1}}</div>
+        <div>B:<input type='radio' value='B' name={{q.id}}  ng-model='ans[q.id]'>{{q.opt2}}</div>
+        <div>C:<input type='radio' value='C' name={{q.id}}  ng-model='ans[q.id]'>{{q.opt3}}</div>
+        <div>D:<input type='radio' value='D' name={{q.id}}  ng-model='ans[q.id]'>{{q.opt4}}</div>
+     <br>
+    </div>
+    <div class="row form-group" >
+         <div class="col-sm-offset-1 col-sm-1">
+            <input type="button" value="SubmitTest" class="btn btn-primary" ng-click="fnSubmitTest()" />
+         </div>  
+    </div>
+</div>  
+
+ 
+
+
+
+

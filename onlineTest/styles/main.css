@@ -1,0 +1,24 @@
+.header{
+  font-size: 50px;
+  font-weight: bold;
+
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-weight: bold;
+  font-size: 20px;
+}
+.menu{
+  font-style: italic;
+  font-weight: bold;
+  font-size: 15px;
+  background: beige;
+  line-height: 40px;
+}
+.menu > a{
+   margin-right: 15px;
+   letter-spacing: 3px;
+}

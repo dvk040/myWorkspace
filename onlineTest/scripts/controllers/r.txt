@@ -1,0 +1,218 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var express = require('express');
+var router = express.Router();
+var sharedObj = require('./shared');
+
+//users registrations page(admin,school,student)
+router.post('/user-reg', function(req, res) {
+    var uid = req.body.uid;
+    var pass = req.body.pass;
+    var email = req.body.email;
+    var phone = req.body.phone;
+    var role = req.body.role;
+
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+        if (e) {
+            res.send(e);
+        }
+    });
+    //prepare query
+    var query = "insert into users(uid,pass,email,phone,role) values('" + uid + "','" + pass + "','" + email + "'," + phone + ",'" + role + "')";
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+
+
+//users login page(admin,school,student)
+
+router.post('/user-log', function(req, res) {
+    var uid = req.body.uid;
+    var pass = req.body.pass;
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+        if (e) {
+            res.send('db connection error');
+        }
+    })
+
+    //prepare query
+    var query = "select * from users where uid='" + uid + "'and pass='" + pass + "'";
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+
+//get details of student,school,admin   
+router.get('/get-user-details', function(req, res) {
+    var id = req.query.id;
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+        if (e) {
+            res.send(e);
+        }
+    })
+
+    //prepare query
+    var query = "select * from users where id=" + id;
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+
+//update school,admin,student
+router.post('/update-user', function(req, res) {
+    var id = req.body.id;
+    var pass = req.body.pass;
+    var email = req.body.email;
+    var phone = req.body.phone;
+
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+        if (e) {
+            res.send(e);
+        }
+    })
+
+    //prepare query
+    var query = "update users set pass='" + pass + "',email='" + email + "',phone=" + phone + " where id=" + id;
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+})
+
+
+//delete school,admin,
+router.get('/delete-user', function(req, res) {
+    var id = req.query.id;
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+            if (e) {
+                res.send(e);
+            }
+        })
+        //prepare query
+    var query = "delete from users where id=" + id;
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+
+//display all schools
+router.get('/users-list', function(req, res) {
+    var role = req.query.role;
+    //connect to the mysql database
+    var con = sharedObj.getCon()
+    con.connect(function(e, r) {
+            if (e) {
+                res.send(e);
+            }
+        })
+        //prepare query
+    var query = "select * from users where role='" + role + "'";
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+
+
+//student list with    
+router.get('/student-list', function(req, res) {
+    var school = req.query.school;
+    var con = sharedObj.getCon();
+    //connect to the mysql database
+    con.connect(function(e, r) {
+        if (e) {
+            res.send(e);
+        }
+    })
+
+    //prepare query
+    var query = "select * from users where role='student'";
+
+    //execute query
+    con.query(query, function(error, response) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send(response);
+        }
+    })
+});
+module.exports = router;

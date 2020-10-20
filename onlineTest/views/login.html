@@ -1,0 +1,33 @@
+<h1 class="text-center">Login</h1>
+<div class="container-fluid">
+    <form name='isloginfm' ng-submit="fnLogin()">
+        <div class="row form-group">
+            <div class="col-sm-5 text-right">
+                <label>User Name:</label>
+            </div>
+            <div class="col-sm-3">
+                <input class="form-control" name='uid' ng-model="data.uid" required "/>
+    <span ng-if='isloginfm.uid.$touched && isloginfm.uid.$invalid' class='text-danger'>Please Enter The Name</span>
+    </div>
+</div>
+<div class="row form-group ">
+        <div class="col-sm-5 text-right ">
+           <label>Password:</label>
+        </div>
+        <div class="col-sm-3 ">
+            <input type="password "  name='pwd' class="form-control " ng-model="data.pwd " required/>
+        <span ng-if='isloginfm.pwd.$touched && isloginfm.pwd.$invalid' class='text-danger'>Please Enter The Password</span>
+        </div>
+    </div>
+    <div class="row form-group ">
+            <div class="col-sm-offset-5 col-sm-7 ">
+                <input type="submit " ng-disabled='isloginfm.$invalid' value="Login " class="btn btn-primary "  />
+            </div>
+    </div>
+</form>
+    <div class="row form-group ">
+            <div class="col-sm-12 text-center ">
+                  <b class="text-danger ">{{msg}}</b>
+            </div>
+    </div>
+</div>

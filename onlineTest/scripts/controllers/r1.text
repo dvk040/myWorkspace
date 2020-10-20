@@ -1,0 +1,148 @@
+var app = angular.module('onlineTestApp');
+app.controller('userCtrl', function($scope, serverCall, $routeParams, $location, $timeout) {
+    $scope.uid = sessionStorage.uid;
+    $scope.role = sessionStorage.role;
+    var path = $location.path();
+
+    if (path == '/school/studentRegister') {
+        $scope.heading = "Student Registration";
+        $scope.roles = ['student'];
+    }
+    if (path == '/admin/schoolRegister') {
+        $scope.heading = "School Registration";
+        $scope.roles = ['school'];
+    }
+    /**-----User Registration---------**/
+    $scope.fnUserReg = function() {
+        $scope.isSuccess = false;
+        debugger;
+        serverCall.fnSendReq('post', '/users/user-reg', $scope.data)
+            .then(function(res) {
+                debugger;
+                if (res.data && res.data.affectedRows == 1) {
+                    alert('user registered successfully')
+                    $scope.data = res.data;
+                    // $timeout(function() {
+                    //     $scope.isSuccess = false;
+                    //     $scope.data = {}
+                    // }, 3000);
+                    $scope.data = {}
+                }
+            })
+            .catch(function(res) {
+                debugger;
+                alert('something went wrong')
+            })
+    }
+
+
+    $scope.fnEdit = function(user) {
+        debugger;
+        if ($scope.role == 'admin')
+            $location.path('/admin/schoolUpdate/' + user.id);
+        if ($scope.role == 'school')
+            $location.path('/school/studentUpdate/' + user.id);
+    }
+
+    /**------------User update----------------- */
+    if (path.indexOf('admin/schoolUpdate') != -1 || path.indexOf('school/studentUpdate') != -1) {
+        if ($scope.role == 'admin')
+            $scope.heading = "Update School Data";
+        if ($scope.role == 'school')
+            $scope.heading = "Update Student Data"
+        var paramId = $routeParams.id;
+        var id = parseInt(paramId);
+        serverCall.fnSendReq('get', '/users/get-user-details?id=' + id)
+            .then(function(res) {
+                debugger;
+                $scope.data = res.data[0];
+
+            })
+            .catch(function(res) {
+                debugger;
+                alert('Db Error')
+            })
+    }
+
+
+    /**----Update user details----------- */
+    $scope.fnUpdate = function() {
+            debugger;
+            var paramId = $routeParams.id;
+            var id = parseInt(paramId);
+            $scope.data.id = id;
+            $scope.isSuccess = false;
+
+            serverCall.fnSendReq('post', '/users/update-user', $scope.data)
+                .then(function(res) {
+                    debugger;
+                    if (res.data && res.data.affectedRows == 1) {
+                        $scope.isSuccess = true;
+                        $timeout(function() {
+                            if ($scope.role == 'admin')
+                                $location.path('/admin/schoolList');
+                            if ($scope.role == 'school')
+                                $location.path('/school/studentList');
+
+                        }, 3000);
+
+                    }
+                })
+                .catch(function(res) {
+
+                })
+        }
+        /*----------- Delete School Details----------*/
+    $scope.fnDelete = function(user) {
+        debugger;
+        var isConfirmed = confirm("Are you sure to delete this record ?");
+        if (isConfirmed) {
+            var id = user.id;
+            serverCall.fnSendReq('get', '/users/delete-user?id=' + id)
+                .then(function(res) {
+                    debugger;
+                    if (res.data && res.data.affectedRows == 1) {
+                        $scope.isSuccess = true;
+                        $timeout(function() {
+                            $scope.isSuccess = false;
+                            $scope.fnUserList();
+                        }, 3000);
+                    }
+                })
+                .catch(function(res) {
+                    debugger;
+                })
+        } else {
+            return false;
+        }
+    }
+
+    /**------- -----------Users List----------********/
+
+    $scope.fnUserList = function() {
+        $scope.headers = ['ID', 'UID', 'PASS', 'EMAIL', 'PHONE', 'ROLE'];
+        debugger;
+        if ($scope.role == 'admin') {
+            var role = 'school';
+        } else {
+            var role = 'student';
+        }
+        serverCall.fnSendReq('get', '/users/users-list?role=' + role)
+            .then(function(res) {
+                $scope.data = res.data;
+                debugger;
+            })
+            .catch(function(res) {
+                debugger;
+            })
+
+    }
+
+    if (path == '/admin/schoolList' || path == '/school/studentList') {
+
+        $scope.fnUserList();
+
+    }
+
+
+});

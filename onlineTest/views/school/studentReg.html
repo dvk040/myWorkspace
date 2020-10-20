@@ -1,0 +1,56 @@
+ <h1 class="text-center">Studnet Registration</h1>
+<div class="container-fluid">
+<div class="row form-group">
+    <div class="col-sm-5 text-right">
+       <label>User Name:</label> 
+    </div>
+    <div class="col-sm-3">
+        <input class="form-control" ng-model="data.uid" />
+    </div>
+</div>
+<div class="row form-group">
+        <div class="col-sm-5 text-right">
+           <label>Password:</label> 
+        </div>
+        <div class="col-sm-3">
+            <input type="password" class="form-control" ng-model="data.pwd" />
+        </div>
+    </div>
+    <div class="row form-group">
+            <div class="col-sm-5 text-right">
+               <label>Email:</label> 
+            </div>
+            <div class="col-sm-3">
+                <input  class="form-control" ng-model="data.email" />
+            </div>
+        </div>
+        <div class="row form-group">
+                <div class="col-sm-5 text-right">
+                   <label>phone:</label> 
+                </div>
+                <div class="col-sm-3">
+                    <input  class="form-control" ng-model="data.phone" />
+                </div>
+            </div>
+            <div class="row form-group">
+                    <div class="col-sm-5 text-right">
+                       <label>Role:</label> 
+                    </div>
+                    <div class="col-sm-3">
+                        <select ng-model="data.role" class="form-control">
+                            <option>Select Role</option>
+                            <option>school</option>
+                        </select>
+                    </div>
+                </div> 
+    <div class="row form-group">
+            <div class="col-sm-offset-5 col-sm-7">
+                <input type="button" value="Register" class="btn btn-primary" ng-click="fnReg()" />
+            </div>  
+    </div>
+    <div class="row form-group">
+            <div class="col-sm-12 text-center">
+                  <b class="text-danger">{{msg}}</b>
+            </div>  
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <tr>
+            <th ng-repeat="h in headers">{{h}}</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        <tr ng-repeat="obj in data">
+            <td ng-repeat="(k,v) in obj">{{v}}</td>
+            <td><input type="button" value="edit" class="btn btn-primary" ng-click="edit({ed:obj})"/></td>
+            <td><input type="button" value="delete" class="btn btn-primary"  ng-click="delete({dd:obj})"/></td>
+            
+        </tr>
+
+    </table>
+</div>
